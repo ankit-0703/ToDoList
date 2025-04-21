@@ -6,10 +6,18 @@ root.title("To-do list")
 
 
 def add_task():
-    print("task added")
+    task=entry_task.get()
+    if task:
+        list_Task.insert(tk.END,task)
+        entry_task.delete(0,tk.END)
+    else:
+        messagebox.showerror("Error","Please enter a task")
 
 def del_task():
     print("task deleted")
+
+def on_closing():
+    pass
 
 label=tk.Label(root,text="Enter the task",font=('Arial',24))
 label.pack()
@@ -34,5 +42,7 @@ try:
         list_Task.insert(tk.END,task)
 except FileExistsError:
     print("File not found")
+
+# root.protocol("WM_DELETE_WINDOW",on_closing)
 
 root.mainloop()
