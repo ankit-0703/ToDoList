@@ -14,7 +14,11 @@ def add_task():
         messagebox.showerror("Error","Please enter a task")
 
 def del_task():
-    print("task deleted")
+    try:
+        selected_task_index=list_Task.curselection()[0]
+        list_Task.delete(selected_task_index)
+    except:
+        messagebox.showerror("Error","Please select a task to delete")
 
 def on_closing():
     pass
