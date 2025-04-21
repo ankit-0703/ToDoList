@@ -21,7 +21,12 @@ def del_task():
         messagebox.showerror("Error","Please select a task to delete")
 
 def on_closing():
-    pass
+    if messagebox.askokcancel("Quit","Do you want to quit?"):
+        tasks=list_Task.get(0,tk.END)
+        with open("tasks.txt","w") as file:
+            for task in tasks:
+                file.write(task + "\n")
+    root.destroy    
 
 label=tk.Label(root,text="Enter the task",font=('Arial',24))
 label.pack()
@@ -47,6 +52,6 @@ try:
 except FileExistsError:
     print("File not found")
 
-# root.protocol("WM_DELETE_WINDOW",on_closing)
+root.protocol("WM_DELETE_WINDOW",on_closing)
 
 root.mainloop()
